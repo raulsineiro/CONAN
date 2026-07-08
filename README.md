@@ -23,8 +23,6 @@ CONAN es una distribución Linux especializada en la recopilación automatizada 
 
 El sistema automatiza cuatro módulos de reconocimiento y genera un **informe ejecutivo en HTML** mediante un modelo de lenguaje local (Ollama + Mistral 7B), sin depender de servicios en la nube para el análisis.
 
-> *Easter egg: sí, el nombre es un guiño al Detective Conan.*
-
 ---
 
 ## Módulos
@@ -64,19 +62,11 @@ Además de los módulos propios de CONAN, la distribución incluye:
 
 ---
 
-## Coming soon
-
-- [ ] Exportación del fichero `.OVA` final
-- [ ] Memoria del TFM con documentación técnica completa
-- [ ] Script de instalación standalone (sin necesidad de importar la OVA)
-- [ ] Mejoras en el módulo de documentos
-- [ ] Soporte para múltiples dominios en un mismo análisis
-
----
-
 ## Ejemplo de informe
 
-> *(Capturas del informe HTML en próximas actualizaciones)*
+![Informe CONAN](images/informe1.jpg)
+
+![Informe CONAN](images/informe2.jpg)
 
 Los informes generados incluyen:
 1. Superficie de exposición del dominio
@@ -84,17 +74,3 @@ Los informes generados incluyen:
 3. Correlaciones y patrones detectados
 4. Evaluación del riesgo (BAJO / MEDIO / ALTO)
 5. Recomendaciones específicas
-
----
-
-## Autor
-
-**Raúl** — [@raulsineiro](https://github.com/raulsineiro)  
-Máster en Ciberseguridad · Campus Internacional de Ciberseguridad  
-Perfil técnico: Blue Team / Detection & Response / OSINT
-
----
-
-## Licencia
-
-Distribuido bajo licencia [GPL-3.0](LICENSE). Las herramientas de terceros incluidas conservan sus licencias originales.
