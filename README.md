@@ -80,6 +80,44 @@ Analiza la reputación del dominio y su IP principal en bases de datos de amenaz
 
 **Herramientas / fuentes:** VirusTotal, AbuseIPDB, URLScan.io.
 
+## Configuración de API keys (opcional)
+
+CONAN funciona en modo gratuito por defecto, pero varias herramientas mejoran significativamente su cobertura si se configuran API keys de servicios externos.
+
+### Obtención de las API keys
+
+| Servicio | Registro | Dónde obtener la key |
+|----------|----------|---------------------|
+| VirusTotal | [Registro gratuito](https://www.virustotal.com/gui/join-us) | Perfil → API Key |
+| AbuseIPDB | [Registro gratuito](https://www.abuseipdb.com/register) | Account → API |
+
+Ambos servicios ofrecen tiers gratuitos suficientes para uso personal.
+
+### Configuración
+
+Edita el fichero `/opt/conan/config.yaml` y añade tus keys:
+
+```yaml
+virustotal_api_key: "tu_key_aqui"
+abuseipdb_api_key: "tu_key_aqui"
+```
+
+Si no configuras las keys, el Módulo 4 funcionará en modo limitado utilizando únicamente URLScan.io, que no requiere registro.
+
+## Requisitos del sistema
+
+- **Software de virtualización:** Oracle VirtualBox 7.0 o superior
+- **CPU:** procesador de 64 bits con soporte de virtualización (VT-x / AMD-V)
+- **RAM:** 6 GB mínimo recomendados (4 GB para la máquina virtual, más los del host)
+- **Almacenamiento:** 30 GB de espacio libre
+- **Conexión a internet:** necesaria para el reconocimiento OSINT y las consultas a los servicios externos
+
+## Limitaciones conocidas
+
+- **Bloqueos temporales de motores de búsqueda:** los servicios en los que se apoyan varias herramientas (Baidu, Yahoo, DuckDuckGo) pueden aplicar bloqueos temporales ante peticiones automatizadas repetidas. Se recomienda esperar unos minutos entre ejecuciones sobre el mismo dominio.
+- **Dependencia del indexado:** los módulos basados en motores de búsqueda solo pueden encontrar información que esté efectivamente indexada. Organizaciones con buenas prácticas de seguridad ofrecerán menos resultados.
+- **Tiempo de respuesta de la IA:** el modelo Mistral 7B funciona en modo CPU y puede tardar entre 2 y 5 minutos en generar el resumen ejecutivo.
+
 ## Consolidador
 
 Cuando se ejecutan varios módulos sobre un mismo dominio, el consolidador reúne los JSONs generados, detecta correlaciones entre ellos y llama al modelo Mistral 7B (a través de Ollama, ejecutándose en local) para generar un resumen ejecutivo en español. El resultado final es un informe HTML almacenado en `/opt/conan/informes/`.
