@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="imagenes/banner.jpg" alt="CONAN" width="600">
+<img src="imagenes/banner.png" alt="CONAN" width="600">
 
 # CONAN — Corporate Open-source Network ANalysis
 
