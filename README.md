@@ -120,3 +120,7 @@ Cuando se ejecutan varios módulos sobre un mismo dominio, el consolidador reún
 - **RAM:** 6 GB mínimo recomendados (4 GB para la máquina virtual, más los del host)
 - **Almacenamiento:** 30 GB de espacio libre
 - **Conexión a internet:** necesaria para el reconocimiento OSINT y las consultas a los servicios externos
+
+## Descarga de la OVA
+
+El fichero OVA de la distribución está disponible en el siguiente enlace de MEGA: https://mega.nz/file/4351BBRT#ECFFEQjCUrLYUeiZxKaPudt5nvRlALanapD-4Ge9QEw
