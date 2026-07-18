@@ -1,0 +1,8 @@
+# CONAN - Fichero de configuración
+# Rellena las API keys que tengas disponibles
+# Las herramientas funcionarán en modo gratuito si no las configuras
+
+# Módulo 4 - Reputación e Inteligencia
+virustotal_api_key: ""
+abuseipdb_api_key: ""
+
