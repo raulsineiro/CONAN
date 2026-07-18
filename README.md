@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="imagenes/banner.png" alt="CONAN" width="600">
+<img src="imagenes/banner.jpg" alt="CONAN" width="600">
 
 # CONAN — Corporate Open-source Network ANalysis
 
@@ -15,6 +15,8 @@
 CONAN es una distribución Linux basada en Ubuntu, diseñada específicamente para automatizar la fase de reconocimiento OSINT sobre dominios corporativos. Integra en un mismo sistema un conjunto de herramientas OSINT, scripts propios desarrollados en Python y un modelo de inteligencia artificial ejecutado localmente que unifica los hallazgos en un informe ejecutivo automatizado.
 
 A diferencia de otras distribuciones OSINT existentes (generalmente en inglés y orientadas a la investigación sobre personas o al pentesting general), CONAN se centra específicamente en el reconocimiento de **empresas y organizaciones**, ofreciendo una experiencia completa en castellano y sin necesidad de configuraciones adicionales.
+
+<img src="imagenes/pantalla.jpg" alt="CONAN" width="600">
 
 ## Características principales
 
@@ -50,39 +52,7 @@ python3 /opt/conan/herramientas.py
 
 Se abrirá un menú con las herramientas OSINT auxiliares organizadas por categorías:
 
-**Reconocimiento web y DNS**
-- `whois` — información de registro de un dominio
-- `dig` — consultas DNS manuales
-- `dnsrecon` — reconocimiento DNS avanzado
-- `wafw00f` — detección de WAFs en sitios web
-- `whatweb` — identificación de tecnologías web
-- `sublist3r` — enumeración pasiva de subdominios
-- `gobuster` — fuerza bruta de directorios y subdominios
-
-**Análisis de red**
-- `traceroute` — trazado de rutas de red
-- `nmap` — escaneo de puertos y servicios
-- `masscan` — escáner de puertos ultra-rápido
-
-**OSINT sobre personas y usuarios**
-- `sherlock` — búsqueda de un usuario en redes sociales
-- `blackbird` — búsqueda de usuarios con la base de datos WhatsMyName
-
-**Análisis de ficheros**
-- `exiftool` — extracción de metadatos
-- `binwalk` — análisis de ficheros binarios y firmware
-- `foremost` — recuperación de ficheros
-- `strings` — extracción de cadenas de texto
-
-**Web y análisis offline**
-- `httrack` — descarga completa de sitios web
-
-**Análisis de tráfico**
-- `wireshark` — análisis interactivo de tráfico de red
-
-**OSINT integrado**
-- `maltego` — visualización gráfica de relaciones OSINT
-- `spiderfoot` — automatización OSINT con interfaz web
+<img src="imagenes/herramientas.jpg" alt="CONAN" width="600">
 
 
 ## Módulos disponibles
@@ -112,6 +82,8 @@ Localiza documentos públicos del dominio (PDF, DOC, XLS, PPT y variantes) y ext
 Analiza la reputación del dominio y su IP principal en bases de datos de amenazas conocidas, y clasifica el nivel de riesgo global.
 
 **Herramientas / fuentes:** VirusTotal, AbuseIPDB, URLScan.io.
+
+<img src="imagenes/conan.jpg" alt="CONAN" width="600">
 
 ## Configuración de API keys (opcional)
 
