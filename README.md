@@ -12,7 +12,7 @@
 
 ## ¿Qué es CONAN?
 
-CONAN es una distribución Linux basada en Ubuntu 22.04 LTS, diseñada específicamente para automatizar la fase de reconocimiento OSINT sobre dominios corporativos. Integra en un mismo sistema un conjunto coherente de herramientas OSINT, scripts propios desarrollados en Python y un modelo de inteligencia artificial ejecutado localmente que unifica los hallazgos en un informe ejecutivo automatizado.
+CONAN es una distribución Linux basada en Ubuntu, diseñada específicamente para automatizar la fase de reconocimiento OSINT sobre dominios corporativos. Integra en un mismo sistema un conjunto de herramientas OSINT, scripts propios desarrollados en Python y un modelo de inteligencia artificial ejecutado localmente que unifica los hallazgos en un informe ejecutivo automatizado.
 
 A diferencia de otras distribuciones OSINT existentes (generalmente en inglés y orientadas a la investigación sobre personas o al pentesting general), CONAN se centra específicamente en el reconocimiento de **empresas y organizaciones**, ofreciendo una experiencia completa en castellano y sin necesidad de configuraciones adicionales.
 
@@ -22,21 +22,19 @@ A diferencia de otras distribuciones OSINT existentes (generalmente en inglés y
 - 🤖 **Inteligencia artificial local** (Ollama + Mistral 7B): los datos analizados nunca salen del sistema.
 - 📊 **Informe HTML automatizado** con detección de correlaciones entre módulos.
 - 🛠️ **Menú de 20 herramientas OSINT adicionales** organizadas por categorías.
-- 🌐 **Tres navegadores preconfigurados** (Firefox, Chrome, Tor Browser) con marcadores OSINT.
-- 💻 **Empaquetado como OVA** listo para importar en VirtualBox.
+- 🌐 **Tres navegadores preconfigurados**: Firefox, Chrome y Tor Browser (los dos primeros con marcadores OSINT).
 - 🇪🇸 **Todo en castellano**, desde la interfaz hasta el informe final.
 
 
 ## Uso básico
 
-Una vez importada la OVA en VirtualBox, arranca la máquina virtual. El usuario por defecto es `conan`.
+Una vez importada la OVA en VirtualBox, arranca la máquina virtual. El usuario por defecto es `conan` y la contraseña `conan`.
 
 ### Lanzar CONAN
 
 Desde el escritorio, haz doble clic en el acceso directo **Iniciar CONAN**, o desde una terminal:
 
 ```bash
-source /opt/conan/venv/bin/activate
 python3 /opt/conan/conan.py
 ```
 
@@ -50,7 +48,42 @@ Desde el escritorio, haz doble clic en **Herramientas CONAN**, o desde una termi
 python3 /opt/conan/herramientas.py
 ```
 
-Se abrirá un menú con las 20 herramientas OSINT auxiliares organizadas por categorías.
+Se abrirá un menú con las herramientas OSINT auxiliares organizadas por categorías:
+
+**Reconocimiento web y DNS**
+- `whois` — información de registro de un dominio
+- `dig` — consultas DNS manuales
+- `dnsrecon` — reconocimiento DNS avanzado
+- `wafw00f` — detección de WAFs en sitios web
+- `whatweb` — identificación de tecnologías web
+- `sublist3r` — enumeración pasiva de subdominios
+- `gobuster` — fuerza bruta de directorios y subdominios
+
+**Análisis de red**
+- `traceroute` — trazado de rutas de red
+- `nmap` — escaneo de puertos y servicios
+- `masscan` — escáner de puertos ultra-rápido
+
+**OSINT sobre personas y usuarios**
+- `sherlock` — búsqueda de un usuario en redes sociales
+- `blackbird` — búsqueda de usuarios con la base de datos WhatsMyName
+
+**Análisis de ficheros**
+- `exiftool` — extracción de metadatos
+- `binwalk` — análisis de ficheros binarios y firmware
+- `foremost` — recuperación de ficheros
+- `strings` — extracción de cadenas de texto
+
+**Web y análisis offline**
+- `httrack` — descarga completa de sitios web
+
+**Análisis de tráfico**
+- `wireshark` — análisis interactivo de tráfico de red
+
+**OSINT integrado**
+- `maltego` — visualización gráfica de relaciones OSINT
+- `spiderfoot` — automatización OSINT con interfaz web
+
 
 ## Módulos disponibles
 
@@ -98,26 +131,20 @@ Ambos servicios ofrecen tiers gratuitos suficientes para uso personal.
 Edita el fichero `/opt/conan/config.yaml` y añade tus keys:
 
 ```yaml
-virustotal_api_key: "tu_key_aqui"
-abuseipdb_api_key: "tu_key_aqui"
+virustotal_api_key: "tu_api_key"
+abuseipdb_api_key: "tu_api_key"
 ```
 
 Si no configuras las keys, el Módulo 4 funcionará en modo limitado utilizando únicamente URLScan.io, que no requiere registro.
 
+## Consolidador
+
+Cuando se ejecutan varios módulos sobre un mismo dominio, el consolidador reúne los JSONs generados, detecta correlaciones entre ellos y llama al modelo Mistral 7B (a través de Ollama, ejecutándose en local) para generar un resumen ejecutivo en español. El resultado final es un informe HTML almacenado en `/opt/conan/informes/`.
+
 ## Requisitos del sistema
 
-- **Software de virtualización:** Oracle VirtualBox 7.0 o superior
+- **Software de virtualización:**
 - **CPU:** procesador de 64 bits con soporte de virtualización (VT-x / AMD-V)
 - **RAM:** 6 GB mínimo recomendados (4 GB para la máquina virtual, más los del host)
 - **Almacenamiento:** 30 GB de espacio libre
 - **Conexión a internet:** necesaria para el reconocimiento OSINT y las consultas a los servicios externos
-
-## Limitaciones conocidas
-
-- **Bloqueos temporales de motores de búsqueda:** los servicios en los que se apoyan varias herramientas (Baidu, Yahoo, DuckDuckGo) pueden aplicar bloqueos temporales ante peticiones automatizadas repetidas. Se recomienda esperar unos minutos entre ejecuciones sobre el mismo dominio.
-- **Dependencia del indexado:** los módulos basados en motores de búsqueda solo pueden encontrar información que esté efectivamente indexada. Organizaciones con buenas prácticas de seguridad ofrecerán menos resultados.
-- **Tiempo de respuesta de la IA:** el modelo Mistral 7B funciona en modo CPU y puede tardar entre 2 y 5 minutos en generar el resumen ejecutivo.
-
-## Consolidador
-
-Cuando se ejecutan varios módulos sobre un mismo dominio, el consolidador reúne los JSONs generados, detecta correlaciones entre ellos y llama al modelo Mistral 7B (a través de Ollama, ejecutándose en local) para generar un resumen ejecutivo en español. El resultado final es un informe HTML almacenado en `/opt/conan/informes/`.
